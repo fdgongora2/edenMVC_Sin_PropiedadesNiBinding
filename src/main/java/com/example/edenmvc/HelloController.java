@@ -23,9 +23,9 @@ public class HelloController {
         account = new FinancialAccount("Maxwell Planck", 6626, 1000d);
 
         //link Model with View
-        accountHolder.textProperty().bind(account.accountHolderProperty());
-        accountBalance.textProperty().bind(account.accountBalanceProperty().asString());
-        accountNumber.textProperty().bind(account.accountNumberProperty().asString());
+        accountHolder.setText(account.getAccountHolder());
+        accountBalance.setText(Double.toString(account.getAccountBalance()));
+        accountNumber.setText(Integer.toString(account.getAccountNumber()));
 
         //link Controller to View - ensure only numeric input (integers) in text field
         amountTextField.setTextFormatter(new TextFormatter<>(change -> {
@@ -44,11 +44,13 @@ public class HelloController {
 
     @FXML private void handleDeposit(Event event) {
         account.deposit(getAmount());
+        accountBalance.setText(Double.toString(account.getAccountBalance()));
         event.consume();
     }
 
     @FXML private void handleWithdrawal(Event event) {
         account.withdraw(getAmount());
+        accountBalance.setText(Double.toString(account.getAccountBalance()));
         event.consume();
     }
 

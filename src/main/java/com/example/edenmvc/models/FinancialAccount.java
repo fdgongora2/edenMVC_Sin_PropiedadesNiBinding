@@ -4,45 +4,49 @@ import javafx.beans.property.*;
 
 public class FinancialAccount {
 
-    private final StringProperty accountHolder;
-    private final IntegerProperty accountNumber;
-    private final DoubleProperty accountBalance;
+
+    private String accountHolder;
+    private Integer accountNumber;
+    private Double accountBalance;
 
     public FinancialAccount(String accountHolder, Integer accountNumber, Double accountBalance) {
-        this.accountHolder = new SimpleStringProperty(accountHolder);
-        this.accountNumber = new SimpleIntegerProperty(accountNumber);
-        this.accountBalance = new SimpleDoubleProperty(accountBalance);
+        this.accountHolder = accountHolder;
+        this.accountNumber = accountNumber;
+        this.accountBalance = accountBalance;
+    }
+
+    public void setAccountHolder(String accountHolder) {
+        this.accountHolder = accountHolder;
     }
 
     public String getAccountHolder() {
-        return accountHolder.get();
-    }
-
-    public StringProperty accountHolderProperty() {
         return accountHolder;
     }
 
-    public int getAccountNumber() {
-        return accountNumber.get();
-    }
 
-    public IntegerProperty accountNumberProperty() {
+    public int getAccountNumber() {
         return accountNumber;
     }
 
-    public double getAccountBalance() {
-        return accountBalance.get();
+
+    public void setAccountNumber(Integer accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
-    public DoubleProperty accountBalanceProperty() {
+
+    public double getAccountBalance() {
         return accountBalance;
     }
 
-    public void deposit(double amount){
-        accountBalance.set(accountBalance.get() + amount);
+    public void setAccountBalance(Double accountBalance) {
+        this.accountBalance = accountBalance;
     }
 
-    public void withdraw(double amount){
-        accountBalance.set(accountBalance.get() - amount);
+    public void deposit(double amount) {
+        this.accountBalance += amount;
+    }
+
+    public void withdraw(double amount) {
+        this.accountBalance -= amount;
     }
 }
